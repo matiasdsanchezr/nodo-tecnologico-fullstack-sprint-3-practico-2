@@ -6,6 +6,7 @@ import {
   agregarSuperHeroe,
   actualizarSuperheroe,
   eliminarSuperheroe,
+  eliminarSuperheroePorNombre,
 } from "../services/superheroService.mjs";
 import {
   renderizarSuperheroe,
@@ -85,6 +86,16 @@ export async function eliminarSuperheroePorIdController(req, res, next) {
   const { id } = req.params;
   try {
     await eliminarSuperheroe(id);
+    return res.status(204).json({ message: "Superhéroe eliminado" });
+  } catch (error) {
+    return next(error);
+  }
+}
+
+export async function eliminarSuperheroePorNombreController(req, res, next) {
+  const { nombreSuperHeroe } = req.params;
+  try {
+    await eliminarSuperheroePorNombre(nombreSuperHeroe);
     return res.status(204).json({ message: "Superhéroe eliminado" });
   } catch (error) {
     return next(error);

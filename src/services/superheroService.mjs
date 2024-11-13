@@ -105,7 +105,7 @@ export async function actualizarSuperheroe(id, superHeroData) {
 
 /**
  * Eliminar un superhéroe de la base de datos.
- * @param {*} id El id del superhéroe que debe eliminarse.
+ * @param {string} id El id del superhéroe que debe eliminarse.
  * @throws {Error}
  */
 export async function eliminarSuperheroe(id) {
@@ -114,5 +114,28 @@ export async function eliminarSuperheroe(id) {
   } catch (error) {
     console.error(error);
     throw new Error("Error al eliminar el superhéroe");
+  }
+}
+
+/**
+ * Eliminar un superhéroe de la base de datos.
+ * @param {string} nombreSuperHeroe El nombre del superhéroe que se debe eliminar.
+ * @throws {Error}
+ */
+export async function eliminarSuperheroePorNombre(nombreSuperHeroe) {
+  const superHero = await SuperHeroRepository.obtenerPorAtributo(
+    "nombreSuperHeroe",
+    nombreSuperHeroe
+  );
+  if (superHero.length < 1) {
+    throw { status: 404, message: "Superhéroe no encontrado" };
+  }
+
+  try {
+    const id = superHero[0]._id;
+    return await SuperHeroRepository.eliminar(id);
+  } catch (error) {
+    console.error(error);
+    throw new Error("Error al eliminar el superhéroe mediante su nombre");
   }
 }

@@ -5,7 +5,7 @@ import SuperHero from "../models/SuperHero.mjs";
 class SuperHeroeRepository extends IRepository {
   /**
    * Obtener un superhéroes mediante su id en la base de datos.
-   * @param {*} id - El id del superhéroe a buscar.
+   * @param {string} id - El id del superhéroe a buscar.
    * @returns {Promise<SuperHero|null>}
    * @throws {Error}
    */
@@ -24,12 +24,12 @@ class SuperHeroeRepository extends IRepository {
 
   /**
    * Obtener una lista de superhéroes cuyo atributo contenga el valor especificado.
-   * @param {*} atributo - El atributo a evaluar.
-   * @param {*} valor - El valor que el atributo debe poseer.
+   * @param {string} atributo - El atributo a evaluar.
+   * @param {string} valor - El valor que el atributo debe poseer.
    * @returns {Promise<Array<SuperHero>>}
    * @throws {Error}
    */
-  async buscarPorAtributo(atributo, valor) {
+  async obtenerPorAtributo(atributo, valor) {
     let query = {};
     const atributoType = SuperHero.schema.path(atributo);
     if (atributoType instanceof mongoose.Schema.Types.Number) {
@@ -88,7 +88,7 @@ class SuperHeroeRepository extends IRepository {
   }
 
   /**
-   * Añadir un nuevo superhéroe a la base de datos
+   * Eliminar un superhéroe mediante su id.
    * @param {string} superheroId El id del superhéroe a eliminar
    * @throws {Error}
    */

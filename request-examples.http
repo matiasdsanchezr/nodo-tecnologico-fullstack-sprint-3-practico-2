@@ -1,4 +1,4 @@
-# Obtener todos los superheroes
+### Obtener todos los superheroes
 GET http://localhost:3000/api/heroes HTTP/1.1
 
 
@@ -43,3 +43,7 @@ content-type: application/json
 
 ### Eliminar un superhéroe
 DELETE http://localhost:3000/api/heroes/673400c15dfa0b14533efe64 HTTP/1.1
+
+
+### Eliminar un superhéroe mediante su nombre
+DELETE http://localhost:3000/api/heroes/nombreSuperHeroe/Hulk HTTP/1.1

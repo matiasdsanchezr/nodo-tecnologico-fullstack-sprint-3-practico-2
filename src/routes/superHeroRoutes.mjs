@@ -7,6 +7,7 @@ import {
   agregarNuevoSuperheroeController,
   actualizarSuperheroePorIdController,
   eliminarSuperheroePorIdController,
+  eliminarSuperheroePorNombreController,
 } from "../controllers/superheroController.mjs";
 import {
   registerSuperHeroValidationRules,
@@ -33,5 +34,9 @@ router.put(
   actualizarSuperheroePorIdController
 );
 router.delete("/heroes/:id", eliminarSuperheroePorIdController);
+router.delete(
+  "/heroes/nombreSuperHeroe/:nombreSuperHeroe",
+  eliminarSuperheroePorNombreController
+);
 
 export default router;
